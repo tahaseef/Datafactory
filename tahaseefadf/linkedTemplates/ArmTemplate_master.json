@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'datalake_ls'"
 		},
+		"HttpServer_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
 		"datalake_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfdatalaketahaseef.dfs.core.windows.net/"
@@ -44,6 +48,9 @@
 					},
 					"datalake_ls_accountKey": {
 						"value": "[parameters('datalake_ls_accountKey')]"
+					},
+					"HttpServer_ls_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer_ls_properties_typeProperties_url')]"
 					},
 					"datalake_ls_properties_typeProperties_url": {
 						"value": "[parameters('datalake_ls_properties_typeProperties_url')]"

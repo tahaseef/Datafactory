@@ -8,6 +8,9 @@
 		"datalake_ls_accountKey": {
 			"value": ""
 		},
+		"HttpServer_ls_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
 		"datalake_ls_properties_typeProperties_url": {
 			"value": "https://adfdatalaketahaseef.dfs.core.windows.net/"
 		}
