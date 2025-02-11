@@ -1,5 +1,5 @@
 {
-	"name": "destination_ds",
+	"name": "gitdest_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "datalake_ls",

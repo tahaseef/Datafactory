@@ -1,18 +1,16 @@
 {
-	"name": "destination_ds",
+	"name": "git_ds",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "datalake_ls",
+			"referenceName": "HttpServer_ls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "file_2",
-				"folderPath": "csvfiles",
-				"fileSystem": "destination"
+				"type": "HttpServerLocation",
+				"relativeUrl": "tahaseef/databricks/refs/heads/main/Fact_Sales_2.csv"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
