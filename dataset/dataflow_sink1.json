@@ -1,0 +1,23 @@
+{
+	"name": "dataflow_sink1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "dataflowFiles",
+				"fileSystem": "reporting"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

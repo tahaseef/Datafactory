@@ -1,0 +1,89 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dataflow_ds1",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dataflow_sink1",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select"
+				},
+				{
+					"name": "filter"
+				},
+				{
+					"name": "split"
+				},
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "aggregate"
+				},
+				{
+					"name": "alterRow"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          transaction_id as short,",
+				"          transactional_date as timestamp,",
+				"          product_id as string,",
+				"          customer_id as short,",
+				"          payment as string,",
+				"          credit_card as long,",
+				"          loyalty_card as boolean,",
+				"          cost as double,",
+				"          quantity as short,",
+				"          price as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source",
+				"source select(mapColumn(",
+				"          transaction_id,",
+				"          transactional_date,",
+				"          product_id,",
+				"          customer_id,",
+				"          payment,",
+				"          credit_card,",
+				"          loyalty_card",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select",
+				"select filter(customer_id!=12) ~> filter",
+				"filter split(payment=='visa',",
+				"     payment=='mastercard',",
+				"     disjoint: false) ~> split@(Visa, Mastercard, Amex)",
+				"split@Amex derive(payment = coalesce(payment, 'NA')) ~> derivedColumn",
+				"split@Visa aggregate(groupBy(customer_id),",
+				"     product_id = max('product_id')) ~> aggregate",
+				"aggregate alterRow(insertIf(1==1)) ~> alterRow",
+				"alterRow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
+			]
+		}
+	}
+}
