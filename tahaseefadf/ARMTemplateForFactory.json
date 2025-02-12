@@ -95,7 +95,7 @@
 						]
 					},
 					{
-						"name": "Delete",
+						"name": "Deleteapp",
 						"type": "Delete",
 						"dependsOn": [
 							{
