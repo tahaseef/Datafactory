@@ -58,9 +58,6 @@
 					},
 					"datalake_ls_properties_typeProperties_url": {
 						"value": "[parameters('datalake_ls_properties_typeProperties_url')]"
-					},
-					"StorageTrigger_properties_typeProperties_scope": {
-						"value": "[parameters('StorageTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -79,6 +76,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"StorageTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('StorageTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
