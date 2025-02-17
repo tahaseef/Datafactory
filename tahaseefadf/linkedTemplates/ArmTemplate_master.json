@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/e4f81679-ec6f-486d-94c8-ca1a3d0a5599/resourceGroups/RG-DataFatory/providers/Microsoft.Storage/storageAccounts/adfdatalaketahaseef"
 		},
+		"mantrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/e4f81679-ec6f-486d-94c8-ca1a3d0a5599/resourceGroups/RG-DataFatory/providers/Microsoft.Storage/storageAccounts/adfdatalaketahaseef"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -79,6 +83,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"mantrigger_properties_typeProperties_scope": {
+						"value": "[parameters('mantrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
