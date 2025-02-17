@@ -14,6 +14,9 @@
 		"datalake_ls_properties_typeProperties_url": {
 			"value": "https://adfdatalaketahaseef.dfs.core.windows.net/"
 		},
+		"StorageTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/e4f81679-ec6f-486d-94c8-ca1a3d0a5599/resourceGroups/RG-DataFatory/providers/Microsoft.Storage/storageAccounts/adfdatalaketahaseef"
+		},
 		"containerUri": {
 			"value": ""
 		},
