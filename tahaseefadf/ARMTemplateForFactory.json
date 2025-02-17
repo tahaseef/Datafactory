@@ -22,10 +22,6 @@
 		"storagetrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/e4f81679-ec6f-486d-94c8-ca1a3d0a5599/resourceGroups/RG-DataFatory/providers/Microsoft.Storage/storageAccounts/adfdatalaketahaseef"
-		},
-		"mantrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/e4f81679-ec6f-486d-94c8-ca1a3d0a5599/resourceGroups/RG-DataFatory/providers/Microsoft.Storage/storageAccounts/adfdatalaketahaseef"
 		}
 	},
 	"variables": {
@@ -885,57 +881,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DataflowTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pipeline4",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 15,
-						"startTime": "2025-02-11T15:50:00",
-						"endTime": "2025-02-11T15:55:00",
-						"timeZone": "India Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline4')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/storagetrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/csvfiles/Fact_Sales_1.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('storagetrigger_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/dataflow')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -1126,7 +1071,38 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/mantrigger')]",
+			"name": "[concat(parameters('factoryName'), '/DataflowTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline4",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2025-02-11T15:50:00",
+						"endTime": "2025-02-11T15:55:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline4')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/storagetrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1143,9 +1119,9 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/Fact_Sales_1.csv",
+					"blobPathBeginsWith": "/source/blobs/csvfiles/Fact_Sales_1.csv",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('mantrigger_properties_typeProperties_scope')]",
+					"scope": "[parameters('storagetrigger_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
